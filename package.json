@@ -1,0 +1,48 @@
+{
+  "name": "pip-pilot-3000",
+  "version": "1.0.0",
+  "description": "A retro-futuristic wrist-computer style flight companion for X-Plane 12 and Microsoft Flight Simulator 2024",
+  "main": "src/main/main.js",
+  "author": "hotelbravo8110",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "serve": "node src/server/standalone.js",
+    "demo": "node src/server/standalone.js --sim demo",
+    "build-data": "node tools/build-data.js",
+    "test": "node --test test/*.test.js",
+    "dist": "electron-builder --win --x64",
+    "dist:portable": "electron-builder --win portable --x64"
+  },
+  "dependencies": {
+    "node-simconnect": "4.2.1",
+    "ws": "8.18.0"
+  },
+  "devDependencies": {
+    "electron": "33.4.11",
+    "electron-builder": "25.1.8"
+  },
+  "build": {
+    "appId": "com.hotelbravo8110.pippilot",
+    "productName": "PIP-PILOT 3000",
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "portable": {
+      "artifactName": "PIP-PILOT-3000-${version}-portable.exe"
+    }
+  }
+}
